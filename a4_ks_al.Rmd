@@ -1,11 +1,94 @@
 ---
-title: "a4_ks_al"
-author: "Annika Leiby"
+title: "Spiny lobster abundance, community size structure, and fishing pressure along the Santa Barbara coast (2012-2018)"
+subtitle: Data collected and distributed by the Santa Barbara Coastal LTER
+author: "Annika Leiby and Kate Shoemaker"
 date: "11/7/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, message=FALSE, warnings=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 ```
+
+Attach packages 
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(tidyr)
+library(here)
+library(ggridges)
+```
+
+Read in data 
+
+```{r}
+lobster_abundance_all_years <- read_csv("Lobster_Abundance_All_Years_20181009.csv",
+                                        na = c("-99999"))
+```
+
+Clean and wrangle data 
+
+```{r}
+lobster_abundance_tidy <- lobster_abundance_all_years %>% 
+  clean_names() %>%
+  mutate(month = as.numeric(month)) %>%
+  mutate(month = month.abb[month]) %>%
+  mutate(month = fct_relevel(month, levels = month.abb))
+
+    
+```
+
+Results A Methods 
+Group by site, select columns year, site, and count 
+
+```{r}
+annual_lobster_count <- lobster_abundance_tidy %>%
+  select(year, site, count) 
+
+ggplot(annual_lobster_count, aes(x = year)) +
+         geom_histogram(aes(fill = site),
+                        bins = 7,
+                      show.legend = FALSE,
+                      color = NA) +
+  facet_wrap(~site) +
+  theme_light() +
+  labs(y = "Lobster Count", x = "Year")
+   
+  
+  
+         
+  
+  
+
+  
+```
+
+
+
+
+
+
+
+
+
+### Introduction
+
+
+### Data and Methods
+
+
+### Results A
+
+
+### Results B 
+
+
+### Results C 
+
+
+### Summary 
+
+
+### References 
 
