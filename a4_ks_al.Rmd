@@ -69,18 +69,49 @@ Results B Methods
 Select columns site, year, and size
 
 ```{r}
-lobster_size <- lobster_abundance_tidy %>% 
-  select(year, site, size_mm)
+lobster_size <- lobster_abundance_tidy %>%
+  select(year, site, size_mm, count)
+
 
 lobster_size_2012 <- lobster_size %>%
+  filter(year == "2012") 
+
+ggplot(lobster_size_2012, aes( x = size_mm)) +
+  geom_histogram(aes(fill = site),
+                        bins = 10) +
+   facet_wrap(~site)
+
+mean(size_mm)
+
+
+
+
   
+  
+  
+  lobster_size <- lobster_abundance_tidy %>%
+  select(year, site, size_mm, count)
+
+
+lobster_size_2018 <- lobster_size %>%
+  filter(year == "2018") 
+
+ggplot(lobster_size_2018, aes( x = size_mm)) +
+  geom_histogram(aes(fill = site),
+                        bins = 10) +
+   facet_wrap(~site)
 
 
 
   
 ```
 
+part c.
+```{r}
 
+  
+    
+```
 
 
 
