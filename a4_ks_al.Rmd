@@ -23,7 +23,7 @@ library(ggridges)
 Read in data 
 
 ```{r}
-lobster_abundance_all_years <- read_csv("Lobster_Abundance_All_Years_20181009.csv",
+lobster_abundance_all_years <- read_csv("lobster_abundance_sbc_lter.csv",
                                         na = c("-99999"))
 ```
 
@@ -60,6 +60,22 @@ ggplot(annual_lobster_count, aes(x = year)) +
          
   
   
+
+  
+```
+
+
+Results B Methods 
+Select columns site, year, and size
+
+```{r}
+lobster_size <- lobster_abundance_tidy %>% 
+  select(year, site, size_mm)
+
+lobster_size_2012 <- lobster_size %>%
+  
+
+
 
   
 ```
